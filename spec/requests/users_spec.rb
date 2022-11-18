@@ -1,13 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
+  include_context 'Skip Auth'
 
-  before do
-    allow_any_instance_of(UsersController).to(
-      receive(:validate_auth_scheme).and_return(true))
-    allow_any_instance_of(UsersController).to(
-      receive(:authenticate_client).and_return(true))
-  end
+  # before do
+  #   allow_any_instance_of(UsersController).to(
+  #     receive(:validate_auth_scheme).and_return(true))
+  #   allow_any_instance_of(UsersController).to(
+  #     receive(:authenticate_client).and_return(true))
+  # end
 
   let(:john) { create(:user) }
   let(:users) { [john] }
@@ -25,8 +26,8 @@ RSpec.describe 'Users', type: :request do
       expect(json_body['data']).to_not be nil
     end
 
-    it 'receives all 1 user' do
-      expect(json_body['data'].size).to eq 1
+    it 'receives all 2 user' do
+      expect(json_body['data'].size).to eq 2
     end
 
   end

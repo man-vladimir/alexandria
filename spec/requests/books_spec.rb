@@ -1,13 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe 'Books', type: :request do
+  include_context 'Skip Auth'
 
-  before do
-    allow_any_instance_of(BooksController).to(
-      receive(:validate_auth_scheme).and_return(true))
-    allow_any_instance_of(BooksController).to(
-      receive(:authenticate_client).and_return(true))
-  end
+  # before do
+  #   allow_any_instance_of(BooksController).to(
+  #     receive(:validate_auth_scheme).and_return(true))
+  #   allow_any_instance_of(BooksController).to(
+  #     receive(:authenticate_client).and_return(true))
+  # end
 
   # one let for each book factory. Here we use 'create' instead
   # of 'build' because we need the data persisted. Those two methods
